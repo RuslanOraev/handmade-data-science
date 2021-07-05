@@ -26,17 +26,20 @@ class Stacking():
     def get_params(self, deep=True):
         return self.meta_alg.get_params(deep)
     
-    def fit(self, X, y):
+    def fit(self, X, y, base_fit_params={}, meta_fit_params={}):
         # fit base and meta models
-        self.fit_base(X, y)
-        self.fit_meta(X, y)
+        self.fit_base(X, y, base_fit_params)
+        self.fit_meta(X, y, **meta_fit_params)
     
-    def fit_base(self, X, y):
+    def fit_base(self, X, y, fit_params={}):
         # fit base algorithms
         for base_algotithm in self.models:
-            base_algotithm.fit(X, y)
+            if base_algotithm in fit_params.keys():
+                base_algotithm.fit(X, y, **fit_params[base_algotithm])
+            else:
+                base_algotithm.fit(X, y)
         
-    def fit_meta(self, X, y):
+    def fit_meta(self, X, y, **kwargs):
         # build an empty matrix of meta features (base models predicts)
         feat_mtrx = np.empty((X.shape[0], len(self.models)))
         
@@ -45,7 +48,7 @@ class Stacking():
             feat_mtrx[:, n] = cross_val_predict(base_algotithm, X, y, cv=self.cv, method='predict')
         
         # fitting meta algorithm using pred matrix of the base models as meta features
-        self.meta_alg.fit(feat_mtrx, y)
+        self.meta_alg.fit(feat_mtrx, y, **kwargs)
         
     def predict(self, X):
         # meta predictions as probability values

@@ -1,5 +1,5 @@
 # Handmade-data-science
-Hello! Here 
+Hello! Here you can see the representation of analytics and ML projects made by me during the studying as a Data Scientist. My target of course was to practise of making analytical report, of using databases and applying the ML to get important metrics and conclusions.
 ***
 ## Courseworks showcase
 1. Analytical report of educational programs of training courses [gitghub](https://github.com/RuslanOraev/handmade-data-science/blob/main/notebooks/courseworks/OraevR_coursework_analytics_1.ipynb) / [Google Drive](https://drive.google.com/file/d/1h-o5B7C1ChDRmG8frcMsA3DGLyH3SWQr/view?usp=sharing)  / [colab](https://colab.research.google.com/drive/1h-o5B7C1ChDRmG8frcMsA3DGLyH3SWQr)<br>
